@@ -17,7 +17,7 @@ html {
 
 header {
   height: 100px;
-  padding: 16px;
+  padding: 8px;
   border: 1px solid black;
   display: flex;
   align-items: center;
