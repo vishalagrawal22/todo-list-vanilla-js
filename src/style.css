@@ -40,6 +40,7 @@ header > img {
 }
 
 .projects-section {
+  flex: 0 0 auto;
   width: 300px;
   border: 1px solid black;
   padding: 8px;
