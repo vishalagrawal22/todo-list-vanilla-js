@@ -170,7 +170,7 @@ footer {
   height: 100%;
 }
 
-.todo-form-flex-container {
+.form-flex-container {
   height: 100%;
   display: flex;
   justify-content: center;
