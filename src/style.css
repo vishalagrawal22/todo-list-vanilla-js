@@ -196,3 +196,24 @@ form {
 .submit-button-container input {
   padding: 8px 16px;
 }
+
+.priority-highest {
+  background-color: #f07b5e;
+}
+
+.priority-high {
+  background-color: #f4a261;
+}
+
+.priority-low {
+  background-color: #e9c46a;
+}
+
+.priority-lowest {
+  background-color: #3bd6c4;
+}
+
+.priority-options div {
+  margin-bottom: 16px;
+  padding: 8px;
+}
