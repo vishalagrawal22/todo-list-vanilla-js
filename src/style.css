@@ -28,3 +28,18 @@ header > img {
   height: 80px;
   width: auto;
 }
+
+.projects-section {
+  width: 300px;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.project-name {
+  margin-bottom: 8px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 8px;
+}
