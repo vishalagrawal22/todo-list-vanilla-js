@@ -217,6 +217,12 @@ form {
   background-color: #3bd6c4;
 }
 
+/* order matters for completed class, 
+  it should come after priority-* classes */
+.completed {
+  background-color: #e3e3e3;
+}
+
 .priority-options div {
   margin-bottom: 16px;
   padding: 8px;
