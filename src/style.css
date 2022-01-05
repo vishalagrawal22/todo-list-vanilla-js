@@ -14,3 +14,17 @@ html {
 *::after {
   box-sizing: inherit;
 }
+
+header {
+  height: 100px;
+  padding: 16px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+header > img {
+  height: 80px;
+  width: auto;
+}
