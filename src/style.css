@@ -217,3 +217,7 @@ form {
   margin-bottom: 16px;
   padding: 8px;
 }
+
+textarea {
+  resize: none;
+}
