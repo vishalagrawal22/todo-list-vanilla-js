@@ -47,6 +47,8 @@ header > img {
 
 .project-name {
   margin-bottom: 8px;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .project-actions {
