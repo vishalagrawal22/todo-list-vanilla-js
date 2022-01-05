@@ -32,6 +32,6 @@ module.exports = {
   devtool: "source-map",
   mode: "development",
   devServer: {
-    static: "./dist",
+    watchFiles: ["./src/*"],
   },
 };
