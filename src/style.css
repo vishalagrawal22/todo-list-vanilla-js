@@ -74,6 +74,47 @@ footer {
 }
 
 .todos-section {
+  padding: 16px;
   flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  align-content: flex-start;
   border: 1px solid black;
+}
+
+.todo-item {
+  border: 1px solid black;
+  width: 400px;
+  height: auto;
+  padding: 16px;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.todo-data {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.todo-data-type {
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.todo-data-value {
+  flex: 1 1 auto;
+  word-break: break-all;
+}
+
+.mark-as-complete {
+  padding: 8px 16px;
+  display: block;
+  margin: auto;
 }
