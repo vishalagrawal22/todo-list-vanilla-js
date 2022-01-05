@@ -10,8 +10,8 @@
       <img src="./images/notepad.svg" />
       <h1>Todo List</h1>
     </header>
-    <section class="overlay active">
-      <div class="todo-form-container active">
+    <section class="overlay inactive">
+      <div class="todo-form-container inactive">
         <div class="form-flex-container">
           <div class="form-card">
             <form>
@@ -55,6 +55,29 @@
                     >
                   </div>
                 </div>
+              </div>
+              <div class="submit-button-container">
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="project-form-container inactive">
+        <div class="form-flex-container">
+          <div class="form-card">
+            <form>
+              <div>
+                <h3>
+                  <label for="project-name" class="block">Project Name:</label>
+                </h3>
+                <input
+                  type="text"
+                  id="project-name"
+                  name="project-name"
+                  size="46"
+                  required
+                />
               </div>
               <div class="submit-button-container">
                 <input type="submit" value="Submit" />

@@ -225,3 +225,7 @@ form {
 textarea {
   resize: none;
 }
+
+.project-form-container {
+  height: 100%;
+}
