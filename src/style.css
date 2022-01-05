@@ -80,6 +80,7 @@ footer {
 
 .todos-section {
   padding: 16px;
+  padding-right: 60px;
   flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
@@ -90,7 +91,7 @@ footer {
 
 .todo-item {
   border: 1px solid black;
-  width: 350px;
+  width: 340px;
   height: auto;
   padding: 16px;
   display: flex;
@@ -131,4 +132,16 @@ footer {
   padding: 8px 16px;
   display: block;
   margin: auto;
+}
+
+.float-button {
+  position: fixed;
+  bottom: 60px;
+  right: 10px;
+  z-index: 1;
+}
+
+.float-button img {
+  height: 50px;
+  width: 50px;
 }
