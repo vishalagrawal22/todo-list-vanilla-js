@@ -12,53 +12,55 @@
     </header>
     <section class="overlay active">
       <div class="todo-form-container active">
-        <div class="form-card">
-          <form>
-            <div>
-              <h3><label for="title" class="block">Title:</label></h3>
-              <input type="text" id="title" name="title" size="46" required />
-            </div>
-            <div>
-              <h3><label for="description">Description:</label></h3>
-              <textarea
-                name="description"
-                id="description"
-                rows="5"
-                cols="50"
-                required
-              ></textarea>
-            </div>
-            <div>
-              <h3><label for="deadline">Deadline:</label></h3>
-              <input type="date" id="deadline" name="deadline" required />
-            </div>
-            <div>
-              <h3>Priority:</h3>
-              <div class="priority-options">
-                <div class="priority-highest">
-                  <input type="radio" name="priority" value="1" checked />
-                  <label for="priority-highest">urgent and important</label>
-                </div>
-                <div class="priority-high">
-                  <input type="radio" name="priority" value="2" />
-                  <label for="priority-high">urgent but not important</label>
-                </div>
-                <div class="priority-low">
-                  <input type="radio" name="priority" value="3" />
-                  <label for="priority-low">not urgent but important</label>
-                </div>
-                <div class="priority-lowest">
-                  <input type="radio" name="priority" value="4" />
-                  <label for="priority-lowest"
-                    >not urgent and not important</label
-                  >
+        <div class="todo-form-flex-container">
+          <div class="form-card">
+            <form>
+              <div>
+                <h3><label for="title" class="block">Title:</label></h3>
+                <input type="text" id="title" name="title" size="46" required />
+              </div>
+              <div>
+                <h3><label for="description">Description:</label></h3>
+                <textarea
+                  name="description"
+                  id="description"
+                  rows="5"
+                  cols="50"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <h3><label for="deadline">Deadline:</label></h3>
+                <input type="date" id="deadline" name="deadline" required />
+              </div>
+              <div>
+                <h3>Priority:</h3>
+                <div class="priority-options">
+                  <div class="priority-highest">
+                    <input type="radio" name="priority" value="1" checked />
+                    <label for="priority-highest">urgent and important</label>
+                  </div>
+                  <div class="priority-high">
+                    <input type="radio" name="priority" value="2" />
+                    <label for="priority-high">urgent but not important</label>
+                  </div>
+                  <div class="priority-low">
+                    <input type="radio" name="priority" value="3" />
+                    <label for="priority-low">not urgent but important</label>
+                  </div>
+                  <div class="priority-lowest">
+                    <input type="radio" name="priority" value="4" />
+                    <label for="priority-lowest"
+                      >not urgent and not important</label
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="submit-button-container">
-              <input type="submit" value="Submit" />
-            </div>
-          </form>
+              <div class="submit-button-container">
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>

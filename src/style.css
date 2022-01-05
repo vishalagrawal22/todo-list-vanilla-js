@@ -168,6 +168,10 @@ footer {
 
 .todo-form-container {
   height: 100%;
+}
+
+.todo-form-flex-container {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
