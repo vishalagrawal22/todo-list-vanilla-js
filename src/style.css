@@ -1,0 +1,16 @@
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
