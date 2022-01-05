@@ -46,6 +46,10 @@ header > img {
   padding: 8px;
 }
 
+.projects-section ul li {
+  list-style-image: url("./images/folder.svg");
+}
+
 .projects-section h2 {
   margin-bottom: 8px;
 }
