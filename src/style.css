@@ -43,3 +43,10 @@ header > img {
   display: flex;
   gap: 8px;
 }
+
+footer {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
