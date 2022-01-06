@@ -28,13 +28,17 @@ import "./style.css";
   }
   subscribe(REMOVE_FORM_FROM_DISPLAY, removeFormFromDOM);
 
-  function initialize(topic) {
+  function initializeOverlay() {
     const overlay = document.querySelector(".overlay");
     overlay.addEventListener("click", (event) => {
       if (event.target.classList.contains("form-flex-container")) {
         publish(REMOVE_FORM_FROM_DISPLAY);
       }
     });
+  }
+
+  function initialize(topic) {
+    initializeOverlay();
   }
   subscribe(INITIALIZE_DOM, initialize);
 })();
