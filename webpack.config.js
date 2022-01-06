@@ -2,7 +2,9 @@ const Path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: {
+    "dom-manager": "./src/dom-manager.js",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -10,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: Path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     clean: true,
   },
   module: {
