@@ -119,6 +119,7 @@ footer {
 }
 
 .todo-data-type {
+  font-weight: 700;
   flex-shrink: 0;
   width: 80px;
 }
