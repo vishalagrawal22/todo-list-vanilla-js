@@ -201,6 +201,13 @@ form {
   padding: 8px 16px;
 }
 
+.priority-highest.completed,
+.priority-high.completed,
+.priority-low.completed,
+.priority-lowest.completed {
+  background-color: #e3e3e3;
+}
+
 .priority-highest {
   background-color: #f07b5e;
 }
@@ -215,12 +222,6 @@ form {
 
 .priority-lowest {
   background-color: #3bd6c4;
-}
-
-/* order matters for completed class, 
-  it should come after priority-* classes */
-.completed {
-  background-color: #e3e3e3;
 }
 
 .priority-options div {
