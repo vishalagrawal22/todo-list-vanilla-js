@@ -50,7 +50,7 @@ import "./style.css";
     );
 
     addProjectButton.addEventListener("click", () => {
-      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".project-form-container" });
+      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".project-form" });
     });
   }
 
@@ -64,7 +64,7 @@ import "./style.css";
   function initializeAddTodoButton() {
     const addTodoButton = document.querySelector(".float-button");
     addTodoButton.addEventListener("click", () => {
-      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".todo-form-container" });
+      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".todo-form" });
     });
   }
 
