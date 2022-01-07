@@ -11,6 +11,19 @@ import "./style.css";
     const overlay = document.querySelector(".overlay");
     const formContainer = document.querySelector(data.formSelector);
     overlay.classList.add("active");
+    if ("prefillValues" in data) {
+      for (const key of Object.keys(data.prefillValues)) {
+        const input = formContainer.querySelector(`[name="${key}"]`);
+        if (input.type === "radio") {
+          const option = formContainer.querySelector(
+            `[name="${key}"][value="${data.prefillValues[key]}"]`
+          );
+          option.setAttribute("checked", true);
+        } else {
+          input.value = data.prefillValues[key];
+        }
+      }
+    }
     formContainer.setAttribute("data-mode", data.mode);
     formContainer.classList.add("active");
   }
@@ -68,7 +81,11 @@ import "./style.css";
   function initializeAddTodoButton() {
     const addTodoButton = document.querySelector(".float-button");
     addTodoButton.addEventListener("click", () => {
-      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".todo-form", mode: "add" });
+      publish(ADD_FORM_TO_DISPLAY, {
+        formSelector: ".todo-form",
+        mode: "add",
+        prefillValues: { priority: 1 },
+      });
     });
   }
 
