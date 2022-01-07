@@ -13,4 +13,13 @@ const ADD_FORM_TO_DISPLAY = "DOM: add form to display";
 const REMOVE_FORM_FROM_DISPLAY = "DOM: remove form from display";
 // Data: None
 
-export { INITIALIZE_DOM, ADD_FORM_TO_DISPLAY, REMOVE_FORM_FROM_DISPLAY };
+const DOM_ADD_PROJECT_TO_NAV = "DOM: add project to name";
+// Data: { name }
+// name of the project
+
+export {
+  INITIALIZE_DOM,
+  ADD_FORM_TO_DISPLAY,
+  REMOVE_FORM_FROM_DISPLAY,
+  DOM_ADD_PROJECT_TO_NAV,
+};

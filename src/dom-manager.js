@@ -3,6 +3,7 @@ import {
   INITIALIZE_DOM,
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
+  DOM_ADD_PROJECT_TO_NAV,
 } from "./topics";
 import "./style.css";
 
@@ -61,6 +62,70 @@ import "./style.css";
 })();
 
 (function projectManager() {
+  const defaultProjectsArray = ["All", "Miscellaneous"];
+  const defaultProjects = new Set(defaultProjectsArray);
+  function copyFromTemplate() {
+    const projectTemplate = document.querySelector(".project-item.template");
+    const project = projectTemplate.cloneNode(true);
+    project.classList.remove("template");
+    return project;
+  }
+
+  function removeActionButtons(project) {
+    const actionButtons = project.querySelector(".project-actions");
+    actionButtons.remove();
+  }
+
+  function setupEditButton(project) {
+    const editButton = project.querySelector(".edit-button");
+    editButton.addEventListener("click", (Event) => {
+      publish(ADD_FORM_TO_DISPLAY, {
+        formSelector: ".project-form",
+        mode: "edit",
+        prefillValues: { "project-name": project.getAttribute("data-name") },
+      });
+    });
+  }
+
+  function setupDeleteButton(project) {
+    const deleteButton = project.querySelector(".delete-button");
+    deleteButton.addEventListener("click", (Event) => {
+      const confirmDelete = confirm(
+        `Are you sure, you want to delete project ${project.getAttribute(
+          "data-name"
+        )}?`
+      );
+      if (confirmDelete) {
+        console.log("Deleting project", project.getAttribute("data-name"));
+      }
+    });
+  }
+
+  function setupActionButtons(project) {
+    setupEditButton(project);
+    setupDeleteButton(project);
+  }
+
+  function getProject(name) {
+    const project = copyFromTemplate();
+    const projectName = project.querySelector("h3 a");
+    projectName.innerText = name;
+    project.setAttribute("data-name", name);
+    if (defaultProjects.has(name)) {
+      removeActionButtons(project);
+    } else {
+      setupActionButtons(project);
+    }
+    return project;
+  }
+
+  function addProjectToDisplay(topic, data) {
+    const projectList = document.querySelector(".projects-section ul");
+    const project = getProject(data.name);
+    projectList.appendChild(project);
+  }
+  subscribe(DOM_ADD_PROJECT_TO_NAV, addProjectToDisplay);
+
   function initializeAddProjectButton() {
     const addProjectButton = document.querySelector(
       ".projects-section > button"
@@ -100,4 +165,9 @@ import "./style.css";
 
 (function tester() {
   publish(INITIALIZE_DOM);
+  publish(DOM_ADD_PROJECT_TO_NAV, { name: "All" });
+  publish(DOM_ADD_PROJECT_TO_NAV, { name: "Miscellaneous" });
+  publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 1" });
+  publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 2" });
+  publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 3" });
 })();
