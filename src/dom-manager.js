@@ -11,6 +11,7 @@ import "./style.css";
     const overlay = document.querySelector(".overlay");
     const formContainer = document.querySelector(data.formSelector);
     overlay.classList.add("active");
+    formContainer.setAttribute("data-mode", data.mode);
     formContainer.classList.add("active");
   }
   subscribe(ADD_FORM_TO_DISPLAY, addFormToDOM);
@@ -50,7 +51,10 @@ import "./style.css";
     );
 
     addProjectButton.addEventListener("click", () => {
-      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".project-form" });
+      publish(ADD_FORM_TO_DISPLAY, {
+        formSelector: ".project-form",
+        mode: "add",
+      });
     });
   }
 
@@ -64,7 +68,7 @@ import "./style.css";
   function initializeAddTodoButton() {
     const addTodoButton = document.querySelector(".float-button");
     addTodoButton.addEventListener("click", () => {
-      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".todo-form" });
+      publish(ADD_FORM_TO_DISPLAY, { formSelector: ".todo-form", mode: "add" });
     });
   }
 
