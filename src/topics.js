@@ -22,6 +22,9 @@ const DOM_REMOVE_PROJECT_FROM_NAV = "DOM: remove project from nav";
 // Data: { name }
 // name: name of the project
 
+const DOM_ADD_TODO_TO_DISPLAY = "DOM: Add TODO to display";
+// Data: { UUID, title, description, timeLeft, priority, isCompleted }
+
 const REQUEST_DELETE_PROJECT = "Controller: handle project deletion";
 // Data: { name }
 // name: name of the project
@@ -44,4 +47,5 @@ export {
   REQUEST_DELETE_PROJECT,
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
+  DOM_ADD_TODO_TO_DISPLAY,
 };

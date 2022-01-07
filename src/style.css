@@ -200,6 +200,22 @@ form.active {
   background-color: #e3e3e3;
 }
 
+.todos-section .priority-1 {
+  order: 1;
+}
+
+.todos-section .priority-2 {
+  order: 2;
+}
+
+.todos-section .priority-3 {
+  order: 3;
+}
+
+.todos-section .priority-4 {
+  order: 4;
+}
+
 .priority-1 {
   background-color: #f07b5e;
 }
