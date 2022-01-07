@@ -193,26 +193,26 @@ form.active {
   padding: 8px 16px;
 }
 
-.priority-highest.completed,
-.priority-high.completed,
-.priority-low.completed,
-.priority-lowest.completed {
+.priority-1.completed,
+.priority-2.completed,
+.priority-3.completed,
+.priority-4.completed {
   background-color: #e3e3e3;
 }
 
-.priority-highest {
+.priority-1 {
   background-color: #f07b5e;
 }
 
-.priority-high {
+.priority-2 {
   background-color: #f4a261;
 }
 
-.priority-low {
+.priority-3 {
   background-color: #e9c46a;
 }
 
-.priority-lowest {
+.priority-4 {
   background-color: #3bd6c4;
 }
 
