@@ -238,3 +238,7 @@ textarea {
   display: none;
   height: 100%;
 }
+
+.template {
+  display: none;
+}
