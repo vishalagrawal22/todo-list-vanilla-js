@@ -14,7 +14,11 @@ const ADD_FORM_TO_DISPLAY = "DOM: add form to display";
 const REMOVE_FORM_FROM_DISPLAY = "DOM: remove form from display";
 // Data: None
 
-const DOM_ADD_PROJECT_TO_NAV = "DOM: add project to name";
+const DOM_ADD_PROJECT_TO_NAV = "DOM: add project to nav";
+// Data: { name }
+// name: name of the project
+
+const DOM_REMOVE_PROJECT_FROM_NAV = "DOM: remove project from nav";
 // Data: { name }
 // name: name of the project
 
@@ -36,6 +40,7 @@ export {
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
   DOM_ADD_PROJECT_TO_NAV,
+  DOM_REMOVE_PROJECT_FROM_NAV,
   REQUEST_DELETE_PROJECT,
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,

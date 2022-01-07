@@ -7,6 +7,7 @@ import {
   REQUEST_DELETE_PROJECT,
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
+  DOM_REMOVE_PROJECT_FROM_NAV,
 } from "./topics";
 import "./style.css";
 
@@ -151,12 +152,18 @@ import "./style.css";
     return project;
   }
 
-  function addProjectToDisplay(topic, data) {
+  function addProjectToNav(topic, data) {
     const projectList = document.querySelector(".projects-section ul");
     const project = getProject(data.name);
     projectList.appendChild(project);
   }
-  subscribe(DOM_ADD_PROJECT_TO_NAV, addProjectToDisplay);
+  subscribe(DOM_ADD_PROJECT_TO_NAV, addProjectToNav);
+
+  function removeProjectFromNav(topic, data) {
+    const project = document.querySelector(`[data-name="${data.name}"]`);
+    project.remove();
+  }
+  subscribe(DOM_REMOVE_PROJECT_FROM_NAV, removeProjectFromNav);
 
   function initializeAddProjectButton() {
     const addProjectButton = document.querySelector(
@@ -203,6 +210,7 @@ import "./style.css";
   publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 2" });
   publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 3" });
   subscribe(REQUEST_DELETE_PROJECT, (topic, data) => {
+    publish(DOM_REMOVE_PROJECT_FROM_NAV, { name: data.name });
     console.log("Deleted Project");
     console.log({ data });
   });
