@@ -4,6 +4,9 @@ import {
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
   DOM_ADD_PROJECT_TO_NAV,
+  REQUEST_DELETE_PROJECT,
+  REQUEST_ADD_PROJECT,
+  REQUEST_UPDATE_PROJECT,
 } from "./topics";
 import "./style.css";
 
@@ -26,6 +29,9 @@ import "./style.css";
       }
     }
     formContainer.setAttribute("data-mode", data.mode);
+    if (data.mode === "edit") {
+      formContainer.setAttribute("data-id", data.id);
+    }
     formContainer.classList.add("active");
   }
   subscribe(ADD_FORM_TO_DISPLAY, addFormToDOM);
@@ -41,6 +47,10 @@ import "./style.css";
       if (form.hasAttribute("data-mode")) {
         form.removeAttribute("data-mode");
       }
+
+      if (form.hasAttribute("data-id")) {
+        form.removeAttribute("data-id");
+      }
       form.reset();
     });
   }
@@ -55,8 +65,29 @@ import "./style.css";
     });
   }
 
+  function initializeProjectForm() {
+    const form = document.querySelector(".project-form");
+    form.addEventListener("submit", (Event) => {
+      Event.preventDefault();
+      const nameInput = form.querySelector("#project-name");
+      const mode = form.getAttribute("data-mode");
+      if (mode === "edit") {
+        const newName = nameInput.value;
+        const oldName = form.getAttribute("data-id");
+        publish(REQUEST_UPDATE_PROJECT, { oldName, newName });
+      } else if (mode === "add") {
+        const name = nameInput.value;
+        publish(REQUEST_ADD_PROJECT, { name });
+      } else {
+        console.log(`Unknown Mode: ${data.mode}`);
+      }
+      publish(REMOVE_FORM_FROM_DISPLAY);
+    });
+  }
+
   function initialize(topic) {
     initializeOverlay();
+    initializeProjectForm();
   }
   subscribe(INITIALIZE_DOM, initialize);
 })();
@@ -79,24 +110,25 @@ import "./style.css";
   function setupEditButton(project) {
     const editButton = project.querySelector(".edit-button");
     editButton.addEventListener("click", (Event) => {
+      const name = project.getAttribute("data-name");
       publish(ADD_FORM_TO_DISPLAY, {
         formSelector: ".project-form",
         mode: "edit",
-        prefillValues: { "project-name": project.getAttribute("data-name") },
+        id: name,
+        prefillValues: { "project-name": name },
       });
     });
   }
 
   function setupDeleteButton(project) {
     const deleteButton = project.querySelector(".delete-button");
+    const name = project.getAttribute("data-name");
     deleteButton.addEventListener("click", (Event) => {
       const confirmDelete = confirm(
-        `Are you sure, you want to delete project ${project.getAttribute(
-          "data-name"
-        )}?`
+        `Are you sure, you want to delete project ${name}?`
       );
       if (confirmDelete) {
-        console.log("Deleting project", project.getAttribute("data-name"));
+        publish(REQUEST_DELETE_PROJECT, { name });
       }
     });
   }
@@ -170,4 +202,16 @@ import "./style.css";
   publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 1" });
   publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 2" });
   publish(DOM_ADD_PROJECT_TO_NAV, { name: "Project 3" });
+  subscribe(REQUEST_DELETE_PROJECT, (topic, data) => {
+    console.log("Deleted Project");
+    console.log({ data });
+  });
+  subscribe(REQUEST_ADD_PROJECT, (topic, data) => {
+    console.log("Added Project");
+    console.log({ data });
+  });
+  subscribe(REQUEST_UPDATE_PROJECT, (topic, data) => {
+    console.log("Updated Project");
+    console.log({ data });
+  });
 })();
