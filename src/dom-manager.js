@@ -37,6 +37,9 @@ import "./style.css";
 
     const formsNodeList = document.querySelectorAll("form");
     formsNodeList.forEach((form) => {
+      if (form.hasAttribute("data-mode")) {
+        form.removeAttribute("data-mode");
+      }
       form.reset();
     });
   }
