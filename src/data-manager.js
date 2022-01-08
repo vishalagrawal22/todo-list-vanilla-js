@@ -11,7 +11,7 @@ import {
   DB_UPDATE_TODO,
   DB_FETCH_TODO,
 } from "./topics";
-import { subscribe } from "./topic-manager";
+import { publish, subscribe } from "./topic-manager";
 import { generateUUID } from "./uuid-generator";
 
 function initalise() {
@@ -53,7 +53,14 @@ subscribe(DB_UPDATE_PROJECT, updateProject);
 
 function deleteProject(topic, data) {
   let projects = getItem("projects");
+  const project = getItem(data.UUID);
   removeItem(data.UUID);
+  for (const todoUUID in project.todoList) {
+    console.log(todoUUID);
+    publish(DB_DELETE_TODO, {
+      UUID: todoUUID,
+    });
+  }
   delete projects[data.UUID];
   setItem("projects", projects);
 }
@@ -94,9 +101,12 @@ function deleteTodo(topic, data) {
   removeItem(data.UUID);
   const projectUUID = todo.projectUUID;
   let project = getItem(projectUUID);
-  project["lastModified"] = new Date();
-  delete project["todoList"][data.UUID];
-  setItem(projectUUID, project);
+  if (project !== null) {
+    // when deleteProject triggers deleteTodo
+    project["lastModified"] = new Date();
+    delete project["todoList"][data.UUID];
+    setItem(projectUUID, project);
+  }
 }
 subscribe(DB_DELETE_TODO, deleteTodo);
 
