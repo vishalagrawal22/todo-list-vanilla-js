@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     "dom-manager": "./src/dom-manager.js",
     "data-manager": "./src/data-manager.js",
+    "flow-manager": "./src/flow-manager.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
