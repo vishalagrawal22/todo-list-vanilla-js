@@ -38,6 +38,27 @@ const REQUEST_ADD_PROJECT = "Controller: handle add project";
 // Data: { name }
 // name: name of the project
 
+const DB_INITALISE = "Data Manager: Initalise database";
+// Data: None
+
+const DB_ADD_PROJECT = "Data Manager: Add project to database";
+// Data: { name }
+// name: project name
+
+const DB_UPDATE_PROJECT = "Data Manager: update project to database";
+// Data: { UUID, name }
+// UUID: project UUID
+// name: project name
+
+const DB_DELETE_PROJECT = "Data Manager: delete project from database";
+// Data: { UUID }
+// UUID: project UUID
+
+const DB_FETCH_PROJECT = "Data Manager: fetch project from DB";
+// Data: { UUID, callback }
+// UUID: project UUID
+// callback: function which called with the data fetched
+
 export {
   INITIALIZE_DOM,
   ADD_FORM_TO_DISPLAY,
@@ -48,4 +69,9 @@ export {
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
   DOM_ADD_TODO_TO_DISPLAY,
+  DB_INITALISE,
+  DB_ADD_PROJECT,
+  DB_UPDATE_PROJECT,
+  DB_DELETE_PROJECT,
+  DB_FETCH_PROJECT,
 };

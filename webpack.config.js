@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
     "dom-manager": "./src/dom-manager.js",
+    "data-manager": "./src/data-manager.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
