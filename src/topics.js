@@ -63,6 +63,33 @@ const DB_FETCH_PROJECT_LIST = "Data Manager: fetch project list from DB";
 // Data: { callback }
 // callback: function which called with the data fetched
 
+const DB_ADD_TODO = "Data Manager: add todo to database";
+// Data: { title, description, priority, projectUUID, deadline }
+// title: title of todo
+// description: description of todo
+// priority: priority of todo
+// projectUUID: projectUUID of the parent project of todo
+// deadline: deadline of todo
+
+const DB_DELETE_TODO = "Data Manager: delete todo from database";
+// UUID
+// UUID: UUID of todo
+
+const DB_UPDATE_TODO = "Data Manager: update todo from database";
+// Data: { UUID }
+// Optional: { title, description, priority, deadline, isCompleted }
+// UUID: UUID of todo
+// isCompleted: is todo completed
+// title: title of todo
+// description: description of todo
+// priority: priority of todo
+// deadline: deadline of todo
+
+const DB_FETCH_TODO = "Data Manager: fetch todo from database";
+// UUID, callback
+// UUID of todo
+// callback: function which called with the data fetched
+
 export {
   INITIALIZE_DOM,
   ADD_FORM_TO_DISPLAY,
@@ -79,4 +106,8 @@ export {
   DB_DELETE_PROJECT,
   DB_FETCH_PROJECT,
   DB_FETCH_PROJECT_LIST,
+  DB_ADD_TODO,
+  DB_DELETE_TODO,
+  DB_UPDATE_TODO,
+  DB_FETCH_TODO,
 };
