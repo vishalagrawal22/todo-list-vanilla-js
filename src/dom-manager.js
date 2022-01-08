@@ -236,7 +236,6 @@ import "./style.css";
   }
 
   function addTodoToDisplay(topic, data) {
-    console.log(data);
     const todoList = document.querySelector(".todos-section");
     const todo = getTodo(
       data.title,
