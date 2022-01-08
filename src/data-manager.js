@@ -5,6 +5,7 @@ import {
   DB_UPDATE_PROJECT,
   DB_DELETE_PROJECT,
   DB_FETCH_PROJECT,
+  DB_FETCH_PROJECT_LIST,
 } from "./topics";
 import { subscribe } from "./topic-manager";
 import { generateUUID } from "./uuid-generator";
@@ -59,3 +60,9 @@ function fetchProject(topic, data) {
   data.callback(project);
 }
 subscribe(DB_FETCH_PROJECT, fetchProject);
+
+function fetchProjectList(topic, data) {
+  let projectList = getItem("projects");
+  data.callback(projectList);
+}
+subscribe(DB_FETCH_PROJECT_LIST, fetchProjectList);

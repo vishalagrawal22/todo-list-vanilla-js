@@ -59,6 +59,10 @@ const DB_FETCH_PROJECT = "Data Manager: fetch project from DB";
 // UUID: project UUID
 // callback: function which called with the data fetched
 
+const DB_FETCH_PROJECT_LIST = "Data Manager: fetch project list from DB";
+// Data: { callback }
+// callback: function which called with the data fetched
+
 export {
   INITIALIZE_DOM,
   ADD_FORM_TO_DISPLAY,
@@ -74,4 +78,5 @@ export {
   DB_UPDATE_PROJECT,
   DB_DELETE_PROJECT,
   DB_FETCH_PROJECT,
+  DB_FETCH_PROJECT_LIST,
 };
