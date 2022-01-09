@@ -26,11 +26,11 @@ import {
 
 import { subscribe, publish } from "./topic-manager";
 
-function addProjectToNav(UUID) {
+function addProjectToNav(UUID, focus = false) {
   publish(DB_FETCH_PROJECT, {
     UUID,
     callback: ({ name }) => {
-      publish(DOM_ADD_PROJECT_TO_NAV, { name, UUID });
+      publish(DOM_ADD_PROJECT_TO_NAV, { name, UUID, focus });
     },
   });
 }
@@ -58,7 +58,7 @@ function handleAddProject(topic, { name }) {
   publish(DB_ADD_PROJECT, {
     name,
     callback: (UUID) => {
-      addProjectToNav(UUID);
+      addProjectToNav(UUID, true);
     },
   });
 }

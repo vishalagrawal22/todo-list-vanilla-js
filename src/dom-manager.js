@@ -215,6 +215,9 @@ import "./style.css";
     const projectList = document.querySelector(".projects-section ul");
     const project = getProject(data.name, data.UUID);
     projectList.appendChild(project);
+    if (data.focus) {
+      project.querySelector("h3").click();
+    }
   }
   subscribe(DOM_ADD_PROJECT_TO_NAV, addProjectToNav);
 

@@ -15,7 +15,7 @@ const REMOVE_FORM_FROM_DISPLAY = "DOM: remove form from display";
 // Data: None
 
 const DOM_ADD_PROJECT_TO_NAV = "DOM: add project to nav";
-// Data: { name, UUID }
+// Data: { name, UUID, focus }
 
 const DOM_REMOVE_PROJECT_FROM_NAV = "DOM: remove project from nav";
 // Data: { UUID }
