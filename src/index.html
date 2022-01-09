@@ -98,36 +98,41 @@
           </li>
         </ul>
       </nav>
-      <section class="todos-section">
-        <article class="todo-item template">
-          <div class="todo-actions">
-            <img class="delete-button" src="./images/edit.svg" />
-            <img class="edit-button" src="./images/delete.svg" />
-          </div>
-          <div class="todo-info">
-            <div class="todo-data" data-type="title">
-              <div class="todo-data-type">Title:</div>
-              <div class="todo-data-value">Sample Title</div>
+      <section class="display-area">
+        <div class="project-info">
+          <h1>Current Project: <span class="current-project"></span></h1>
+        </div>
+        <section class="todos-section">
+          <article class="todo-item template">
+            <div class="todo-actions">
+              <img class="delete-button" src="./images/edit.svg" />
+              <img class="edit-button" src="./images/delete.svg" />
             </div>
-            <div class="todo-data" data-type="time-left">
-              <div class="todo-data-type">Time Left:</div>
-              <div class="todo-data-value">100 years (due: 5 Jan 2122)</div>
+            <div class="todo-info">
+              <div class="todo-data" data-type="title">
+                <div class="todo-data-type">Title:</div>
+                <div class="todo-data-value">Sample Title</div>
+              </div>
+              <div class="todo-data" data-type="time-left">
+                <div class="todo-data-type">Time Left:</div>
+                <div class="todo-data-value">100 years (due: 5 Jan 2122)</div>
+              </div>
+              <div class="todo-data" data-type="description">
+                <div class="todo-data-type">Description:</div>
+                <div class="todo-data-value">Sample Description</div>
+              </div>
+              <div class="todo-data" data-type="status">
+                <div class="todo-data-type">Status:</div>
+                <div class="todo-data-value">Pending</div>
+              </div>
+              <div>
+                <button class="toggle-completed-status-button">
+                  Mark as complete
+                </button>
+              </div>
             </div>
-            <div class="todo-data" data-type="description">
-              <div class="todo-data-type">Description:</div>
-              <div class="todo-data-value">Sample Description</div>
-            </div>
-            <div class="todo-data" data-type="status">
-              <div class="todo-data-type">Status:</div>
-              <div class="todo-data-value">Pending</div>
-            </div>
-            <div>
-              <button class="toggle-completed-status-button">
-                Mark as complete
-              </button>
-            </div>
-          </div>
-        </article>
+          </article>
+        </section>
       </section>
       <div class="float-button"><img src="./images/add.svg" /></div>
     </main>

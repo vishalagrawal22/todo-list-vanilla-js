@@ -86,7 +86,6 @@ footer {
   flex-wrap: wrap;
   gap: 16px 16px;
   align-content: flex-start;
-  border: 1px solid black;
 }
 
 .todo-item {
@@ -247,4 +246,15 @@ textarea {
 
 form {
   display: none;
+}
+
+.display-area {
+  flex: 1 1 0;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info {
+  text-align: center;
 }

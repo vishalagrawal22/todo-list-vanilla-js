@@ -138,6 +138,14 @@ import "./style.css";
     });
   }
 
+  function setupAddToDisplay(project) {
+    project.addEventListener("click", () => {
+      const UUID = project.getAttribute("data-UUID");
+      const name = project.getAttribute("data-name");
+      setupDisplayForProject(UUID, name);
+    });
+  }
+
   function setupActionButtons(project) {
     setupEditButton(project);
     setupDeleteButton(project);
@@ -149,6 +157,7 @@ import "./style.css";
     projectName.innerText = name;
     project.setAttribute("data-name", name);
     project.setAttribute("data-UUID", UUID);
+    setupAddToDisplay(project);
     if (defaultProject === name) {
       removeActionButtons(project);
     } else {
@@ -167,8 +176,18 @@ import "./style.css";
   function removeProjectFromNav(topic, data) {
     const project = document.querySelector(`[data-UUID="${data.UUID}"]`);
     project.remove();
+    resetDisplay();
   }
   subscribe(DOM_REMOVE_PROJECT_FROM_NAV, removeProjectFromNav);
+
+  function setupDisplayForProject(projectUUID, name) {
+    const todosSection = document.querySelector(".todos-section");
+    todosSection.innerHTML = "";
+    todosSection.removeAttribute("data-project-UUID");
+    todosSection.setAttribute("data-project-UUID", projectUUID);
+    const currentProject = document.querySelector(".current-project");
+    currentProject.innerText = name;
+  }
 
   function initializeAddProjectButton() {
     const addProjectButton = document.querySelector(
@@ -183,8 +202,15 @@ import "./style.css";
     });
   }
 
+  function resetDisplay() {
+    const project = document.querySelector(`[data-UUID="all"]`);
+    setupAddToDisplay(project);
+    project.click();
+  }
+
   function initialize(topic) {
     initializeAddProjectButton();
+    resetDisplay();
   }
   subscribe(DOM_INITIALIZE, initialize);
 })();
