@@ -15,6 +15,7 @@ import {
   DB_ADD_TODO,
   DB_FETCH_TODO,
   DOM_ADD_TODO_TO_DISPLAY,
+  REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -119,6 +120,15 @@ function addAllProjectsToDisplay() {
   });
 }
 
+function handleAddProjectData(topic, { UUID }) {
+  if (UUID === "all") {
+    addAllProjectsToDisplay();
+  } else {
+    addProjectToDisplay(UUID);
+  }
+}
+subscribe(REQUEST_ADD_PROJECT_DATA_TO_DISPLAY, handleAddProjectData);
+
 function defaultProjectHelper(parentFunction, topic, data) {
   publish(DB_FETCH_PROJECT_LIST, {
     callback: (projectList) => {
@@ -160,7 +170,6 @@ subscribe(REQUEST_ADD_TODO, handleAddTodo);
     callback: () => {
       publish(DOM_INITIALIZE, {});
       addAllProjectsToNav();
-      addAllProjectsToDisplay();
     },
   });
 })();
