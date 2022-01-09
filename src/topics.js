@@ -12,10 +12,12 @@ const ADD_FORM_TO_DISPLAY = "DOM: add form to display";
 // and value is the prefill value for name property
 
 const REMOVE_FORM_FROM_DISPLAY = "DOM: remove form from display";
-// Data: None
+// Data: { redirect }
+// redirect: redirect to all (true by default)
 
 const DOM_ADD_PROJECT_TO_NAV = "DOM: add project to nav";
 // Data: { name, UUID, focus }
+// focus: focus on this project (false by default)
 
 const DOM_REMOVE_PROJECT_FROM_NAV = "DOM: remove project from nav";
 // Data: { UUID }

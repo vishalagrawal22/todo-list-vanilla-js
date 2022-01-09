@@ -35,9 +35,10 @@ function addProjectToNav(UUID, focus = false) {
   });
 }
 
-function removeProjectFromNav(UUID) {
+function removeProjectFromNav(UUID, redirect = true) {
   publish(DOM_REMOVE_PROJECT_FROM_NAV, {
     UUID,
+    redirect,
   });
 }
 
@@ -79,8 +80,8 @@ function handleUpdateProject(topic, { UUID, name }) {
     UUID,
     name,
     callback: () => {
-      removeProjectFromNav(UUID);
-      addProjectToNav(UUID);
+      removeProjectFromNav(UUID, false);
+      addProjectToNav(UUID, true);
     },
   });
 }

@@ -224,7 +224,9 @@ import "./style.css";
   function removeProjectFromNav(topic, data) {
     const project = document.querySelector(`[data-UUID="${data.UUID}"]`);
     project.remove();
-    resetDisplay();
+    if (data.redirect) {
+      resetDisplay();
+    }
   }
   subscribe(DOM_REMOVE_PROJECT_FROM_NAV, removeProjectFromNav);
 
