@@ -5,7 +5,7 @@ const ADD_FORM_TO_DISPLAY = "DOM: add form to display";
 // Data: { formSelector, mode, id }
 // formSelector: css selector of the form
 // mode: option {add, edit}
-// if mode == "edit" the id of edited item else it is optional
+// id should be provided for add todo (project UUID), edit todo (todo UUID), edit project (project UUID)
 
 // Optional Data: { prefillValues }
 // prefillValues: object with keys as name property of input
