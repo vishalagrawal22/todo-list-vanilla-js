@@ -10,10 +10,9 @@ import {
   REQUEST_UPDATE_PROJECT,
   DOM_ADD_TODO_TO_DISPLAY,
   DOM_DELETE_TODO_FROM_DISPLAY,
-  REQUEST_TODO_STATUS_TOGGLE,
+  REQUEST_UPDATE_TODO,
   REQUEST_ADD_TODO,
   REQUEST_DELETE_TODO,
-  REQUEST_UPDATE_TODO,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
 } from "./topics";
 import "./style.css";
@@ -343,7 +342,7 @@ import "./style.css";
       todo.classList.add("completed");
       toggleCompletedStatusButton.innerText = "Mark as incomplete";
       toggleCompletedStatusButton.addEventListener("click", () => {
-        publish(REQUEST_TODO_STATUS_TOGGLE, {
+        publish(REQUEST_UPDATE_TODO, {
           UUID,
           isCompleted: false,
         });
@@ -352,7 +351,7 @@ import "./style.css";
       statusData.innerText = "Pending";
       toggleCompletedStatusButton.innerText = "Mark as complete";
       toggleCompletedStatusButton.addEventListener("click", () => {
-        publish(REQUEST_TODO_STATUS_TOGGLE, {
+        publish(REQUEST_UPDATE_TODO, {
           UUID,
           isCompleted: true,
         });

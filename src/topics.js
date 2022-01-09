@@ -26,9 +26,6 @@ const DOM_ADD_TODO_TO_DISPLAY = "DOM: Add TODO to display";
 const DOM_DELETE_TODO_FROM_DISPLAY = "DOM: Delete TODO from display";
 // Data: { UUID }
 
-const REQUEST_TODO_STATUS_TOGGLE = "Controller: handle todo status toggle";
-// Data { UUID, isCompleted }
-
 const REQUEST_DELETE_PROJECT = "Controller: handle project deletion";
 // Data: { UUID }
 
@@ -43,7 +40,8 @@ const REQUEST_ADD_TODO = "Controller: handle add todo";
 // Data: { title, description, deadline, priority, projectUUID }
 
 const REQUEST_UPDATE_TODO = "Controller: handle update todo";
-// Data: { title, description, deadline, priority, UUID }
+// Data: UUID
+// Optional Data: { title, description, deadline, priority, isCompleted }
 
 const REQUEST_DELETE_TODO = "Controller: handle delete todo";
 // Data: { UUID }
@@ -135,5 +133,4 @@ export {
   DB_UPDATE_TODO,
   DB_FETCH_TODO,
   DOM_DELETE_TODO_FROM_DISPLAY,
-  REQUEST_TODO_STATUS_TOGGLE,
 };
