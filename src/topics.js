@@ -23,6 +23,12 @@ const DOM_REMOVE_PROJECT_FROM_NAV = "DOM: remove project from nav";
 const DOM_ADD_TODO_TO_DISPLAY = "DOM: Add TODO to display";
 // Data: { UUID, title, description, timeLeft, priority, isCompleted }
 
+const DOM_DELETE_TODO_FROM_DISPLAY = "DOM: Delete TODO from display";
+// Data: { UUID }
+
+const REQUEST_TODO_STATUS_TOGGLE = "Controller: handle todo status toggle";
+// Data { UUID, isCompleted }
+
 const REQUEST_DELETE_PROJECT = "Controller: handle project deletion";
 // Data: { UUID }
 
@@ -111,4 +117,6 @@ export {
   DB_DELETE_TODO,
   DB_UPDATE_TODO,
   DB_FETCH_TODO,
+  DOM_DELETE_TODO_FROM_DISPLAY,
+  REQUEST_TODO_STATUS_TOGGLE,
 };

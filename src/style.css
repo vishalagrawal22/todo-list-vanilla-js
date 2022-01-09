@@ -129,7 +129,7 @@ footer {
   word-break: break-all;
 }
 
-.mark-as-complete {
+.toggle-completed-status-button {
   padding: 8px 16px;
   display: block;
   margin: auto;

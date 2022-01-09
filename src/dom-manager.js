@@ -4,11 +4,13 @@ import {
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
   DOM_ADD_PROJECT_TO_NAV,
+  DOM_REMOVE_PROJECT_FROM_NAV,
   REQUEST_DELETE_PROJECT,
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
-  DOM_REMOVE_PROJECT_FROM_NAV,
   DOM_ADD_TODO_TO_DISPLAY,
+  DOM_DELETE_TODO_FROM_DISPLAY,
+  REQUEST_TODO_STATUS_TOGGLE,
 } from "./topics";
 import "./style.css";
 
@@ -221,7 +223,9 @@ import "./style.css";
     const statusData = todo.querySelector(
       `[data-type="status"] .todo-data-value`
     );
-    const markAsComplete = todo.querySelector(".mark-as-complete");
+    const toggleCompletedStatusButton = todo.querySelector(
+      ".toggle-completed-status-button"
+    );
     todo.classList.add(`priority-${priority}`);
     titleData.innerText = title;
     descriptionData.innerText = description;
@@ -229,10 +233,22 @@ import "./style.css";
     if (isCompleted) {
       statusData.innerText = "Completed";
       todo.classList.add("completed");
-      markAsComplete.innerText = "Mark as incomplete";
+      toggleCompletedStatusButton.innerText = "Mark as incomplete";
+      toggleCompletedStatusButton.addEventListener("click", () => {
+        publish(REQUEST_TODO_STATUS_TOGGLE, {
+          UUID,
+          isCompleted: false,
+        });
+      });
     } else {
       statusData.innerText = "Pending";
-      markAsComplete.innerText = "Mark as complete";
+      toggleCompletedStatusButton.innerText = "Mark as complete";
+      toggleCompletedStatusButton.addEventListener("click", () => {
+        publish(REQUEST_TODO_STATUS_TOGGLE, {
+          UUID,
+          isCompleted: true,
+        });
+      });
     }
     return todo;
   }
@@ -250,6 +266,12 @@ import "./style.css";
     todoList.appendChild(todo);
   }
   subscribe(DOM_ADD_TODO_TO_DISPLAY, addTodoToDisplay);
+
+  function deleteTodoFromDisplay(topic, data) {
+    const todo = document.querySelector(`[data-UUID="${data.UUID}"]`);
+    todo.remove();
+  }
+  subscribe(DOM_DELETE_TODO_FROM_DISPLAY, deleteTodoFromDisplay);
 
   function initialize(topic) {
     initializeAddTodoButton();
