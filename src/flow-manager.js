@@ -19,6 +19,8 @@ import {
   DB_DELETE_TODO,
   DOM_DELETE_TODO_FROM_DISPLAY,
   REQUEST_DELETE_TODO,
+  DB_UPDATE_TODO,
+  REQUEST_UPDATE_TODO,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -183,6 +185,18 @@ function handleDeleteTodo(topic, { UUID }) {
   });
 }
 subscribe(REQUEST_DELETE_TODO, handleDeleteTodo);
+
+function handleUpdateTodo(topic, data) {
+  const UUID = data.UUID;
+  publish(DB_UPDATE_TODO, {
+    ...data,
+    callback: () => {
+      removeTodoFromDisplay(UUID);
+      addTodoToDisplay(UUID);
+    },
+  });
+}
+subscribe(REQUEST_UPDATE_TODO, handleUpdateTodo);
 
 (function startApp() {
   publish(DB_INITIALIZE, {
