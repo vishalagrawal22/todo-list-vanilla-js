@@ -182,7 +182,12 @@ import "./style.css";
 
   function setupDisplayForProject(projectUUID, name) {
     const todosSection = document.querySelector(".todos-section");
-    todosSection.innerHTML = "";
+    const todoItems = todosSection.querySelectorAll("article");
+    todoItems.forEach((todo) => {
+      if (!todo.classList.contains(".template")) {
+        todo.remove();
+      }
+    });
     todosSection.removeAttribute("data-project-UUID");
     todosSection.setAttribute("data-project-UUID", projectUUID);
     const currentProject = document.querySelector(".current-project");
