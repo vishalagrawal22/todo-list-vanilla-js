@@ -13,6 +13,8 @@ import {
   REQUEST_UPDATE_PROJECT,
   REQUEST_ADD_TODO,
   DB_ADD_TODO,
+  DB_FETCH_TODO,
+  DOM_ADD_TODO_TO_DISPLAY,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -77,6 +79,22 @@ function handleUpdateProject(topic, { UUID, name }) {
 }
 subscribe(REQUEST_UPDATE_PROJECT, handleUpdateProject);
 
+function addTodoToDisplay(todoUUID) {
+  publish(DB_FETCH_TODO, {
+    UUID: todoUUID,
+    callback: ({ title, description, priority, isCompleted, deadline }) => {
+      publish(DOM_ADD_TODO_TO_DISPLAY, {
+        UUID: todoUUID,
+        title,
+        description,
+        priority,
+        isCompleted,
+        timeLeft: deadline,
+      });
+    },
+  });
+}
+
 function defaultProjectHelper(parentFunction, topic, data) {
   publish(DB_FETCH_PROJECT_LIST, {
     callback: (projectList) => {
@@ -105,8 +123,8 @@ function handleAddTodo(
       deadline,
       priority,
       projectUUID,
-      callback: (todoUID) => {
-        console.log(todoUID);
+      callback: (todoUUID) => {
+        addTodoToDisplay(todoUUID);
       },
     });
   }
