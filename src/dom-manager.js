@@ -32,7 +32,7 @@ import "./style.css";
     }
     formContainer.setAttribute("data-mode", data.mode);
     if (data.mode === "edit") {
-      formContainer.setAttribute("data-id", data.id);
+      formContainer.setAttribute("data-UUID", data.id);
     }
     formContainer.classList.add("active");
   }
@@ -50,8 +50,8 @@ import "./style.css";
         form.removeAttribute("data-mode");
       }
 
-      if (form.hasAttribute("data-id")) {
-        form.removeAttribute("data-id");
+      if (form.hasAttribute("data-UUID")) {
+        form.removeAttribute("data-UUID");
       }
       form.reset();
     });
@@ -74,9 +74,9 @@ import "./style.css";
       const nameInput = form.querySelector("#project-name");
       const mode = form.getAttribute("data-mode");
       if (mode === "edit") {
-        const newName = nameInput.value;
-        const oldName = form.getAttribute("data-id");
-        publish(REQUEST_UPDATE_PROJECT, { oldName, newName });
+        const name = nameInput.value;
+        const UUID = form.getAttribute("data-UUID");
+        publish(REQUEST_UPDATE_PROJECT, { UUID, name });
       } else if (mode === "add") {
         const name = nameInput.value;
         publish(REQUEST_ADD_PROJECT, { name });
@@ -95,8 +95,7 @@ import "./style.css";
 })();
 
 (function projectManager() {
-  const defaultProjectsArray = ["All", "Miscellaneous"];
-  const defaultProjects = new Set(defaultProjectsArray);
+  const defaultProject = "miscellaneous";
   function copyFromTemplate() {
     const projectTemplate = document.querySelector(".project-item.template");
     const project = projectTemplate.cloneNode(true);
@@ -113,10 +112,11 @@ import "./style.css";
     const editButton = project.querySelector(".edit-button");
     editButton.addEventListener("click", (Event) => {
       const name = project.getAttribute("data-name");
+      const UUID = project.getAttribute("data-UUID");
       publish(ADD_FORM_TO_DISPLAY, {
         formSelector: ".project-form",
         mode: "edit",
-        id: name,
+        id: UUID,
         prefillValues: { "project-name": name },
       });
     });
@@ -125,12 +125,13 @@ import "./style.css";
   function setupDeleteButton(project) {
     const deleteButton = project.querySelector(".delete-button");
     const name = project.getAttribute("data-name");
+    const UUID = project.getAttribute("data-UUID");
     deleteButton.addEventListener("click", (Event) => {
       const confirmDelete = confirm(
         `Are you sure, you want to delete project ${name}?`
       );
       if (confirmDelete) {
-        publish(REQUEST_DELETE_PROJECT, { name });
+        publish(REQUEST_DELETE_PROJECT, { UUID });
       }
     });
   }
@@ -140,12 +141,13 @@ import "./style.css";
     setupDeleteButton(project);
   }
 
-  function getProject(name) {
+  function getProject(name, UUID) {
     const project = copyFromTemplate();
     const projectName = project.querySelector("h3 a");
     projectName.innerText = name;
     project.setAttribute("data-name", name);
-    if (defaultProjects.has(name)) {
+    project.setAttribute("data-UUID", UUID);
+    if (defaultProject === name) {
       removeActionButtons(project);
     } else {
       setupActionButtons(project);
@@ -155,13 +157,13 @@ import "./style.css";
 
   function addProjectToNav(topic, data) {
     const projectList = document.querySelector(".projects-section ul");
-    const project = getProject(data.name);
+    const project = getProject(data.name, data.UUID);
     projectList.appendChild(project);
   }
   subscribe(DOM_ADD_PROJECT_TO_NAV, addProjectToNav);
 
   function removeProjectFromNav(topic, data) {
-    const project = document.querySelector(`[data-name="${data.name}"]`);
+    const project = document.querySelector(`[data-UUID="${data.UUID}"]`);
     project.remove();
   }
   subscribe(DOM_REMOVE_PROJECT_FROM_NAV, removeProjectFromNav);
