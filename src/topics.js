@@ -39,6 +39,12 @@ const REQUEST_ADD_PROJECT = "Controller: handle add project";
 // Data: { name }
 // name: name of the project
 
+const REQUEST_ADD_TODO = "Controller: handle add todo";
+// Data: {  title, description, deadline, priority, UUID }
+
+const REQUEST_UPDATE_TODO = "Controller: handle update todo";
+// Data: { title, description, deadline, priority, projectUUID }
+
 const DB_INITIALIZE = "Data Manager: Initalise database";
 // Data: None
 // Optional Data: { callback }
@@ -106,6 +112,8 @@ export {
   REQUEST_DELETE_PROJECT,
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
+  REQUEST_ADD_TODO,
+  REQUEST_UPDATE_TODO,
   DOM_ADD_TODO_TO_DISPLAY,
   DB_INITIALIZE,
   DB_ADD_PROJECT,

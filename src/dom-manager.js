@@ -11,6 +11,8 @@ import {
   DOM_ADD_TODO_TO_DISPLAY,
   DOM_DELETE_TODO_FROM_DISPLAY,
   REQUEST_TODO_STATUS_TOGGLE,
+  REQUEST_ADD_TODO,
+  REQUEST_UPDATE_TODO,
 } from "./topics";
 import "./style.css";
 
@@ -33,7 +35,7 @@ import "./style.css";
       }
     }
     formContainer.setAttribute("data-mode", data.mode);
-    if (data.mode === "edit") {
+    if ("id" in data) {
       formContainer.setAttribute("data-UUID", data.id);
     }
     formContainer.classList.add("active");
@@ -89,9 +91,50 @@ import "./style.css";
     });
   }
 
+  function initializeTodoForm() {
+    const form = document.querySelector(".todo-form");
+    form.addEventListener("submit", (Event) => {
+      Event.preventDefault();
+      const mode = form.getAttribute("data-mode");
+      const titleInput = form.querySelector("#title");
+      const descriptionInput = form.querySelector("#description");
+      const deadlineInput = form.querySelector("#deadline");
+      const priorityInput = form.querySelector(
+        `input[name='priority']:checked`
+      );
+      const title = titleInput.value;
+      const description = descriptionInput.value;
+      const deadline = deadlineInput.value;
+      const priority = priorityInput.value;
+      if (mode === "edit") {
+        const UUID = form.getAttribute("data-UUID");
+        publish(REQUEST_UPDATE_TODO, {
+          title,
+          description,
+          deadline,
+          priority,
+          UUID,
+        });
+      } else if (mode === "add") {
+        const projectUUID = form.getAttribute("data-UUID");
+        publish(REQUEST_ADD_TODO, {
+          title,
+          description,
+          deadline,
+          priority,
+          projectUUID,
+        });
+      } else {
+        console.log(`Unknown Mode: ${data.mode}`);
+      }
+      publish(REMOVE_FORM_FROM_DISPLAY);
+    });
+  }
+
   function initialize(topic) {
     initializeOverlay();
     initializeProjectForm();
+    initializeTodoForm();
   }
   subscribe(DOM_INITIALIZE, initialize);
 })();
@@ -224,9 +267,13 @@ import "./style.css";
   function initializeAddTodoButton() {
     const addTodoButton = document.querySelector(".float-button");
     addTodoButton.addEventListener("click", () => {
+      const projectUUID = document
+        .querySelector(".todos-section")
+        .getAttribute("data-project-uuid");
       publish(ADD_FORM_TO_DISPLAY, {
         formSelector: ".todo-form",
         mode: "add",
+        id: projectUUID,
         prefillValues: { priority: 1 },
       });
     });
