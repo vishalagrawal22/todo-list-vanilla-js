@@ -1,6 +1,6 @@
 import { publish, subscribe } from "./topic-manager";
 import {
-  INITIALIZE_DOM,
+  DOM_INITIALIZE,
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
   DOM_ADD_PROJECT_TO_NAV,
@@ -91,7 +91,7 @@ import "./style.css";
     initializeOverlay();
     initializeProjectForm();
   }
-  subscribe(INITIALIZE_DOM, initialize);
+  subscribe(DOM_INITIALIZE, initialize);
 })();
 
 (function projectManager() {
@@ -182,7 +182,7 @@ import "./style.css";
   function initialize(topic) {
     initializeAddProjectButton();
   }
-  subscribe(INITIALIZE_DOM, initialize);
+  subscribe(DOM_INITIALIZE, initialize);
 })();
 
 (function todoManager() {
@@ -252,5 +252,5 @@ import "./style.css";
   function initialize(topic) {
     initializeAddTodoButton();
   }
-  subscribe(INITIALIZE_DOM, initialize);
+  subscribe(DOM_INITIALIZE, initialize);
 })();

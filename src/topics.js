@@ -1,4 +1,4 @@
-const INITIALIZE_DOM = "DOM: initialize";
+const DOM_INITIALIZE = "DOM: initialize";
 // Data: None
 
 const ADD_FORM_TO_DISPLAY = "DOM: add form to display";
@@ -97,7 +97,7 @@ const DB_FETCH_TODO = "Data Manager: fetch todo from database";
 // callback: function which called with the data fetched
 
 export {
-  INITIALIZE_DOM,
+  DOM_INITIALIZE,
   ADD_FORM_TO_DISPLAY,
   REMOVE_FORM_FROM_DISPLAY,
   DOM_ADD_PROJECT_TO_NAV,
