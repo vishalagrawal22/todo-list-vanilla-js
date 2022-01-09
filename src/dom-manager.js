@@ -184,7 +184,7 @@ import "./style.css";
     const todosSection = document.querySelector(".todos-section");
     const todoItems = todosSection.querySelectorAll("article");
     todoItems.forEach((todo) => {
-      if (!todo.classList.contains(".template")) {
+      if (!todo.classList.contains("template")) {
         todo.remove();
       }
     });

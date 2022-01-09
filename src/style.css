@@ -80,7 +80,7 @@ footer {
 
 .todos-section {
   padding: 16px;
-  padding-right: 80px;
+  padding-right: 0px;
   flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
@@ -251,6 +251,7 @@ form {
 .display-area {
   flex: 1 1 0;
   border: 1px solid black;
+  padding-right: 80px;
   display: flex;
   flex-direction: column;
 }
