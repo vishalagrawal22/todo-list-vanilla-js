@@ -11,6 +11,8 @@ import {
   DOM_REMOVE_PROJECT_FROM_NAV,
   DB_UPDATE_PROJECT,
   REQUEST_UPDATE_PROJECT,
+  REQUEST_ADD_TODO,
+  DB_ADD_TODO,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -74,6 +76,42 @@ function handleUpdateProject(topic, { UUID, name }) {
   });
 }
 subscribe(REQUEST_UPDATE_PROJECT, handleUpdateProject);
+
+function defaultProjectHelper(parentFunction, topic, data) {
+  publish(DB_FETCH_PROJECT_LIST, {
+    callback: (projectList) => {
+      data["projectUUID"] = projectList["defaultProjectUUID"];
+      parentFunction(topic, data);
+    },
+  });
+}
+
+function handleAddTodo(
+  topic,
+  { title, description, deadline, priority, projectUUID }
+) {
+  if (projectUUID === "all") {
+    defaultProjectHelper(handleAddTodo, topic, {
+      title,
+      description,
+      deadline,
+      priority,
+      projectUUID,
+    });
+  } else {
+    publish(DB_ADD_TODO, {
+      title,
+      description,
+      deadline,
+      priority,
+      projectUUID,
+      callback: (todoUID) => {
+        console.log(todoUID);
+      },
+    });
+  }
+}
+subscribe(REQUEST_ADD_TODO, handleAddTodo);
 
 (function startApp() {
   publish(DB_INITIALIZE, {
