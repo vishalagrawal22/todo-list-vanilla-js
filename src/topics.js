@@ -40,18 +40,22 @@ const REQUEST_ADD_PROJECT = "Controller: handle add project";
 
 const DB_INITALISE = "Data Manager: Initalise database";
 // Data: None
+// Optional Data: { callback }
 
 const DB_ADD_PROJECT = "Data Manager: Add project to database";
 // Data: { name }
+// Optional Data: { callback }
 // name: project name
 
 const DB_UPDATE_PROJECT = "Data Manager: update project to database";
 // Data: { UUID, name }
+// Optional Data: { callback }
 // UUID: project UUID
 // name: project name
 
 const DB_DELETE_PROJECT = "Data Manager: delete project from database";
 // Data: { UUID }
+// Optional Data: { callback }
 // UUID: project UUID
 
 const DB_FETCH_PROJECT = "Data Manager: fetch project from DB";
@@ -65,6 +69,7 @@ const DB_FETCH_PROJECT_LIST = "Data Manager: fetch project list from DB";
 
 const DB_ADD_TODO = "Data Manager: add todo to database";
 // Data: { title, description, priority, projectUUID, deadline }
+// Optional Data: { callback }
 // title: title of todo
 // description: description of todo
 // priority: priority of todo
@@ -73,11 +78,12 @@ const DB_ADD_TODO = "Data Manager: add todo to database";
 
 const DB_DELETE_TODO = "Data Manager: delete todo from database";
 // UUID
+// Optional Data: { callback }
 // UUID: UUID of todo
 
 const DB_UPDATE_TODO = "Data Manager: update todo from database";
 // Data: { UUID }
-// Optional: { title, description, priority, deadline, isCompleted }
+// Optional Data: { title, description, priority, deadline, isCompleted, callback }
 // UUID: UUID of todo
 // isCompleted: is todo completed
 // title: title of todo
@@ -86,7 +92,7 @@ const DB_UPDATE_TODO = "Data Manager: update todo from database";
 // deadline: deadline of todo
 
 const DB_FETCH_TODO = "Data Manager: fetch todo from database";
-// UUID, callback
+// Data: { UUID, callback }
 // UUID of todo
 // callback: function which called with the data fetched
 

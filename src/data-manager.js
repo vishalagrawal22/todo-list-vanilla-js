@@ -14,7 +14,7 @@ import {
 import { publish, subscribe } from "./topic-manager";
 import { generateUUID } from "./uuid-generator";
 
-function initalise() {
+function initalise(topic, data) {
   if (getItem("projects") === null) {
     const miscellaneousUUID = generateUUID();
     setItem("projects", {
@@ -26,6 +26,9 @@ function initalise() {
       todoList: {},
       lastModified: new Date(),
     });
+  }
+  if ("callback" in data) {
+    data.callback();
   }
 }
 subscribe(DB_INITALISE, initalise);
@@ -40,6 +43,9 @@ function addProject(topic, data) {
     todoList: {},
     lastModified: new Date(),
   });
+  if ("callback" in data) {
+    data.callback();
+  }
 }
 subscribe(DB_ADD_PROJECT, addProject);
 
@@ -48,6 +54,9 @@ function updateProject(topic, data) {
   project["name"] = data.name;
   project["lastModified"] = new Date();
   setItem(data.UUID, project);
+  if ("callback" in data) {
+    data.callback();
+  }
 }
 subscribe(DB_UPDATE_PROJECT, updateProject);
 
@@ -63,6 +72,9 @@ function deleteProject(topic, data) {
   }
   delete projects[data.UUID];
   setItem("projects", projects);
+  if ("callback" in data) {
+    data.callback();
+  }
 }
 subscribe(DB_DELETE_PROJECT, deleteProject);
 
@@ -93,6 +105,9 @@ function addTodo(topic, data) {
   project["lastModified"] = new Date();
   project["todoList"][todoUUID] = true;
   setItem(data.projectUUID, project);
+  if ("callback" in data) {
+    data.callback();
+  }
 }
 subscribe(DB_ADD_TODO, addTodo);
 
@@ -106,6 +121,9 @@ function deleteTodo(topic, data) {
     project["lastModified"] = new Date();
     delete project["todoList"][data.UUID];
     setItem(projectUUID, project);
+  }
+  if ("callback" in data) {
+    data.callback();
   }
 }
 subscribe(DB_DELETE_TODO, deleteTodo);
@@ -123,6 +141,9 @@ function updateTodo(topic, data) {
   let project = getItem(todo.projectUUID);
   project["lastModified"] = new Date();
   setItem(todo.projectUUID, project);
+  if ("callback" in data) {
+    data.callback();
+  }
 }
 subscribe(DB_UPDATE_TODO, updateTodo);
 
