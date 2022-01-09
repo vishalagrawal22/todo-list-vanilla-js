@@ -65,7 +65,6 @@ function deleteProject(topic, data) {
   const project = getItem(data.UUID);
   removeItem(data.UUID);
   for (const todoUUID in project.todoList) {
-    console.log(todoUUID);
     publish(DB_DELETE_TODO, {
       UUID: todoUUID,
     });
