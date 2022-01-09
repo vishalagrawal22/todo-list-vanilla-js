@@ -2,11 +2,7 @@ const Path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: {
-    "dom-manager": "./src/dom-manager.js",
-    "data-manager": "./src/data-manager.js",
-    "flow-manager": "./src/flow-manager.js",
-  },
+  entry: "./src/index.js",
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -14,7 +10,7 @@ module.exports = {
   ],
   output: {
     path: Path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
+    filename: "bundle.js",
     clean: true,
   },
   module: {
@@ -37,5 +33,8 @@ module.exports = {
   mode: "development",
   devServer: {
     watchFiles: ["./src/*"],
+  },
+  optimization: {
+    usedExports: true,
   },
 };
