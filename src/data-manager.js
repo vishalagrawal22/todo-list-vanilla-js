@@ -45,7 +45,7 @@ function addProject(topic, data) {
     lastModified: new Date(),
   });
   if ("callback" in data) {
-    data.callback();
+    data.callback(projectUUID);
   }
 }
 subscribe(DB_ADD_PROJECT, addProject);
@@ -106,7 +106,7 @@ function addTodo(topic, data) {
   project["todoList"][todoUUID] = true;
   setItem(data.projectUUID, project);
   if ("callback" in data) {
-    data.callback();
+    data.callback(todoUUID);
   }
 }
 subscribe(DB_ADD_TODO, addTodo);
