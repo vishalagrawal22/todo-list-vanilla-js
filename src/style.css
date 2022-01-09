@@ -192,11 +192,12 @@ form.active {
   padding: 8px 16px;
 }
 
-.priority-1.completed,
-.priority-2.completed,
-.priority-3.completed,
-.priority-4.completed {
+.todo-item.priority-1.completed,
+.todo-item.priority-2.completed,
+.todo-item.priority-3.completed,
+.todo-item.priority-4.completed {
   background-color: #e3e3e3;
+  order: 5;
 }
 
 .todos-section .priority-1 {
