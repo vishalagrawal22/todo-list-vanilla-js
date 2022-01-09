@@ -15,8 +15,13 @@ import {
 
 import { subscribe, publish } from "./topic-manager";
 
-function addProjectToNav(name, UUID) {
-  publish(DOM_ADD_PROJECT_TO_NAV, { name, UUID });
+function addProjectToNav(UUID) {
+  publish(DB_FETCH_PROJECT, {
+    UUID,
+    callback: ({ name }) => {
+      publish(DOM_ADD_PROJECT_TO_NAV, { name, UUID });
+    },
+  });
 }
 
 function removeProjectFromNav(UUID) {
@@ -32,12 +37,7 @@ function addAllProjectsToNav() {
         if (projectUUID === "defaultProjectUUID") {
           continue;
         }
-        publish(DB_FETCH_PROJECT, {
-          UUID: projectUUID,
-          callback: (projectData) => {
-            addProjectToNav(projectData.name, projectUUID);
-          },
-        });
+        addProjectToNav(projectUUID);
       }
     },
   });
@@ -47,7 +47,7 @@ function handleAddProject(topic, data) {
   publish(DB_ADD_PROJECT, {
     name: data.name,
     callback: (UUID) => {
-      addProjectToNav(data.name, UUID);
+      addProjectToNav(UUID);
     },
   });
 }
@@ -69,7 +69,7 @@ function handleUpdateProject(topic, { UUID, name }) {
     name,
     callback: () => {
       removeProjectFromNav(UUID);
-      addProjectToNav(name, UUID);
+      addProjectToNav(UUID);
     },
   });
 }
