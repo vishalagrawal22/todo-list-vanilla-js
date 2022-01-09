@@ -1,6 +1,6 @@
 import { getItem, setItem, removeItem } from "./db";
 import {
-  DB_INITALISE,
+  DB_INITIALIZE,
   DB_ADD_PROJECT,
   DB_UPDATE_PROJECT,
   DB_DELETE_PROJECT,
@@ -31,7 +31,7 @@ function initalise(topic, data) {
     data.callback();
   }
 }
-subscribe(DB_INITALISE, initalise);
+subscribe(DB_INITIALIZE, initalise);
 
 function addProject(topic, data) {
   let projects = getItem("projects");

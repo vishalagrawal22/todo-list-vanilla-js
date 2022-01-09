@@ -38,7 +38,7 @@ const REQUEST_ADD_PROJECT = "Controller: handle add project";
 // Data: { name }
 // name: name of the project
 
-const DB_INITALISE = "Data Manager: Initalise database";
+const DB_INITIALIZE = "Data Manager: Initalise database";
 // Data: None
 // Optional Data: { callback }
 
@@ -106,7 +106,7 @@ export {
   REQUEST_ADD_PROJECT,
   REQUEST_UPDATE_PROJECT,
   DOM_ADD_TODO_TO_DISPLAY,
-  DB_INITALISE,
+  DB_INITIALIZE,
   DB_ADD_PROJECT,
   DB_UPDATE_PROJECT,
   DB_DELETE_PROJECT,
