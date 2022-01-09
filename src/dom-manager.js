@@ -256,13 +256,18 @@ import "./style.css";
 
   function resetDisplay() {
     const project = document.querySelector(`[data-UUID="all"]`);
+    project.click();
+  }
+
+  function setupALL() {
+    const project = document.querySelector(`[data-UUID="all"]`);
     setupAddToDisplay(project);
     project.click();
   }
 
   function initialize(topic) {
     initializeAddProjectButton();
-    resetDisplay();
+    setupALL();
   }
   subscribe(DOM_INITIALIZE, initialize);
 })();
