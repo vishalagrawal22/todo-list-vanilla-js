@@ -106,6 +106,19 @@ function addProjectToDisplay(projectUUID) {
   });
 }
 
+function addAllProjectsToDisplay() {
+  publish(DB_FETCH_PROJECT_LIST, {
+    callback: (projectList) => {
+      for (const projectUUID in projectList) {
+        if (projectUUID === "defaultProjectUUID") {
+          continue;
+        }
+        addProjectToDisplay(projectUUID);
+      }
+    },
+  });
+}
+
 function defaultProjectHelper(parentFunction, topic, data) {
   publish(DB_FETCH_PROJECT_LIST, {
     callback: (projectList) => {
@@ -147,6 +160,7 @@ subscribe(REQUEST_ADD_TODO, handleAddTodo);
     callback: () => {
       publish(DOM_INITIALIZE, {});
       addAllProjectsToNav();
+      addAllProjectsToDisplay();
     },
   });
 })();
