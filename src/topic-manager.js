@@ -1,18 +1,19 @@
-import PubSub from "pubsub-js";
-
-// only for development purpose
-PubSub.immediateExceptions = true;
+import {
+  subscribe as sub,
+  unsubscribe as unsub,
+  publish as pub,
+} from "pubsub-js";
 
 function subscribe(topic, callback) {
-  return PubSub.subscribe(topic, callback);
+  return sub(topic, callback);
 }
 
 function unsubscribe(token) {
-  PubSub.unsubscribe(token);
+  unsub(token);
 }
 
 function publish(topic, data) {
-  return PubSub.publish(topic, data);
+  return pub(topic, data);
 }
 
 export { subscribe, unsubscribe, publish };
