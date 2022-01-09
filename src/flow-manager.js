@@ -21,6 +21,7 @@ import {
   REQUEST_DELETE_TODO,
   DB_UPDATE_TODO,
   REQUEST_UPDATE_TODO,
+  REQUEST_TODO_DATA,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -197,6 +198,16 @@ function handleUpdateTodo(topic, data) {
   });
 }
 subscribe(REQUEST_UPDATE_TODO, handleUpdateTodo);
+
+function handleFetchTodoData(topic, { UUID, callback: callbackDOM }) {
+  publish(DB_FETCH_TODO, {
+    UUID,
+    callback: (data) => {
+      callbackDOM(data);
+    },
+  });
+}
+subscribe(REQUEST_TODO_DATA, handleFetchTodoData);
 
 (function startApp() {
   publish(DB_INITIALIZE, {

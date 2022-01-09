@@ -14,6 +14,7 @@ import {
   REQUEST_ADD_TODO,
   REQUEST_DELETE_TODO,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
+  REQUEST_TODO_DATA,
 } from "./topics";
 import "./style.css";
 
@@ -290,10 +291,25 @@ import "./style.css";
 
   function setupEditButton(todo) {
     const editButton = todo.querySelector(".edit-button");
+    console.log(editButton);
+    editButton.addEventListener("click", (Event) => {
+      const UUID = todo.getAttribute("data-UUID");
+      publish(REQUEST_TODO_DATA, {
+        UUID,
+        callback: ({ title, deadline, priority, description }) => {
+          publish(ADD_FORM_TO_DISPLAY, {
+            formSelector: ".todo-form",
+            mode: "edit",
+            id: UUID,
+            prefillValues: { title, deadline, priority, description },
+          });
+        },
+      });
+    });
   }
 
   function setupDeleteButton(todo) {
-    const deleteButton = todo.querySelector(".edit-button");
+    const deleteButton = todo.querySelector(".delete-button");
     const UUID = todo.getAttribute("data-UUID");
     deleteButton.addEventListener("click", (Event) => {
       publish(REQUEST_DELETE_TODO, {

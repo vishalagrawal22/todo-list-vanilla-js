@@ -50,6 +50,10 @@ const REQUEST_ADD_PROJECT_DATA_TO_DISPLAY =
   "Controller: handle add project data to display";
 // Data: { UUID }
 
+const REQUEST_TODO_DATA =
+  "Controller: handle retrieving data from database and callback with it";
+// Data: { UUID, callback }
+
 const DB_INITIALIZE = "Data Manager: Initalise database";
 // Data: None
 // Optional Data: { callback }
@@ -121,6 +125,7 @@ export {
   REQUEST_UPDATE_TODO,
   REQUEST_DELETE_TODO,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
+  REQUEST_TODO_DATA,
   DOM_ADD_TODO_TO_DISPLAY,
   DB_INITIALIZE,
   DB_ADD_PROJECT,
