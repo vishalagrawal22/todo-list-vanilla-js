@@ -43,9 +43,9 @@ function addAllProjectsToNav() {
   });
 }
 
-function handleAddProject(topic, data) {
+function handleAddProject(topic, { name }) {
   publish(DB_ADD_PROJECT, {
-    name: data.name,
+    name,
     callback: (UUID) => {
       addProjectToNav(UUID);
     },
@@ -53,11 +53,11 @@ function handleAddProject(topic, data) {
 }
 subscribe(REQUEST_ADD_PROJECT, handleAddProject);
 
-function handleDeleteProject(topic, data) {
+function handleDeleteProject(topic, { UUID }) {
   publish(DB_DELETE_PROJECT, {
-    UUID: data.UUID,
+    UUID,
     callback: () => {
-      removeProjectFromNav(data.UUID);
+      removeProjectFromNav(UUID);
     },
   });
 }
