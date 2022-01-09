@@ -183,7 +183,7 @@ import "./style.css";
   }
 
   function setupAddToDisplay(project) {
-    project.addEventListener("click", () => {
+    project.querySelector("h3").addEventListener("click", () => {
       const UUID = project.getAttribute("data-UUID");
       const name = project.getAttribute("data-name");
       setupDisplayForProject(UUID, name);
@@ -256,13 +256,13 @@ import "./style.css";
 
   function resetDisplay() {
     const project = document.querySelector(`[data-UUID="all"]`);
-    project.click();
+    project.querySelector("h3").click();
   }
 
   function setupALL() {
     const project = document.querySelector(`[data-UUID="all"]`);
     setupAddToDisplay(project);
-    project.click();
+    project.querySelector("h3").click();
   }
 
   function initialize(topic) {
