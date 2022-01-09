@@ -241,7 +241,7 @@ import "./style.css";
 
   function getTodo(title, description, timeLeft, priority, isCompleted, UUID) {
     const todo = copyFromTemplate();
-    todo.id = UUID;
+    todo.setAttribute("data-UUID", UUID);
     const titleData = todo.querySelector(
       `[data-type="title"] .todo-data-value`
     );
