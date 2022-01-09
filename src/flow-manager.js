@@ -25,6 +25,7 @@ import {
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
+import { isExpired, getTimeLeft, formatDate } from "./date-manager";
 
 function addProjectToNav(UUID, focus = false) {
   publish(DB_FETCH_PROJECT, {
@@ -91,13 +92,23 @@ function addTodoToDisplay(todoUUID) {
   publish(DB_FETCH_TODO, {
     UUID: todoUUID,
     callback: ({ title, description, priority, isCompleted, deadline }) => {
+      let timeLeft;
+      const formattedDeadline = formatDate(deadline);
+      console.log(deadline);
+      if (isCompleted) {
+        timeLeft = `Task is completed (${formattedDeadline})`;
+      } else if (isExpired(deadline)) {
+        timeLeft = `Past due date (${formattedDeadline})`;
+      } else {
+        timeLeft = `${getTimeLeft(deadline)} (${formattedDeadline})`;
+      }
       publish(DOM_ADD_TODO_TO_DISPLAY, {
         UUID: todoUUID,
         title,
         description,
         priority,
         isCompleted,
-        timeLeft: deadline,
+        timeLeft,
       });
     },
   });
