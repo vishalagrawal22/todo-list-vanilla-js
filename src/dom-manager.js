@@ -296,7 +296,6 @@ import "./style.css";
 
   function setupEditButton(todo) {
     const editButton = todo.querySelector(".edit-button");
-    console.log(editButton);
     editButton.addEventListener("click", (Event) => {
       const UUID = todo.getAttribute("data-UUID");
       publish(REQUEST_TODO_DATA, {

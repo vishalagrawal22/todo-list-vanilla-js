@@ -94,7 +94,6 @@ function addTodoToDisplay(todoUUID) {
     callback: ({ title, description, priority, isCompleted, deadline }) => {
       let timeLeft;
       const formattedDeadline = formatDate(deadline);
-      console.log(deadline);
       if (isCompleted) {
         timeLeft = `Task is completed (${formattedDeadline})`;
       } else if (isExpired(deadline)) {
