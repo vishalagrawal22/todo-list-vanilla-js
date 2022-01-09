@@ -13,6 +13,7 @@ import {
   REQUEST_TODO_STATUS_TOGGLE,
   REQUEST_ADD_TODO,
   REQUEST_UPDATE_TODO,
+  REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
 } from "./topics";
 import "./style.css";
 
@@ -235,6 +236,9 @@ import "./style.css";
     todosSection.setAttribute("data-project-UUID", projectUUID);
     const currentProject = document.querySelector(".current-project");
     currentProject.innerText = name;
+    publish(REQUEST_ADD_PROJECT_DATA_TO_DISPLAY, {
+      UUID: projectUUID,
+    });
   }
 
   function initializeAddProjectButton() {
