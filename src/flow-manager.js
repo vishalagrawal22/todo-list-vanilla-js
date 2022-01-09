@@ -95,6 +95,17 @@ function addTodoToDisplay(todoUUID) {
   });
 }
 
+function addProjectToDisplay(projectUUID) {
+  publish(DB_FETCH_PROJECT, {
+    UUID: projectUUID,
+    callback: ({ todoList }) => {
+      for (const todoUUID in todoList) {
+        addTodoToDisplay(todoUUID);
+      }
+    },
+  });
+}
+
 function defaultProjectHelper(parentFunction, topic, data) {
   publish(DB_FETCH_PROJECT_LIST, {
     callback: (projectList) => {
