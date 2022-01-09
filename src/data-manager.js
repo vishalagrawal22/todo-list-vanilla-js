@@ -18,6 +18,7 @@ function initalise(topic, data) {
   if (getItem("projects") === null) {
     const miscellaneousUUID = generateUUID();
     setItem("projects", {
+      defaultProjectUUID: miscellaneousUUID,
       [miscellaneousUUID]: true,
     });
 
