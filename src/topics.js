@@ -45,6 +45,9 @@ const REQUEST_ADD_TODO = "Controller: handle add todo";
 const REQUEST_UPDATE_TODO = "Controller: handle update todo";
 // Data: { title, description, deadline, priority, UUID }
 
+const REQUEST_DELETE_TODO = "Controller: handle delete todo";
+// Data: { UUID }
+
 const REQUEST_ADD_PROJECT_DATA_TO_DISPLAY =
   "Controller: handle add project data to display";
 // Data: { UUID }
@@ -118,6 +121,7 @@ export {
   REQUEST_UPDATE_PROJECT,
   REQUEST_ADD_TODO,
   REQUEST_UPDATE_TODO,
+  REQUEST_DELETE_TODO,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
   DOM_ADD_TODO_TO_DISPLAY,
   DB_INITIALIZE,

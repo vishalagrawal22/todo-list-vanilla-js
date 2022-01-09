@@ -16,6 +16,9 @@ import {
   DB_FETCH_TODO,
   DOM_ADD_TODO_TO_DISPLAY,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
+  DB_DELETE_TODO,
+  DOM_DELETE_TODO_FROM_DISPLAY,
+  REQUEST_DELETE_TODO,
 } from "./topics";
 
 import { subscribe, publish } from "./topic-manager";
@@ -164,6 +167,22 @@ function handleAddTodo(
   }
 }
 subscribe(REQUEST_ADD_TODO, handleAddTodo);
+
+function removeTodoFromDisplay(UUID) {
+  publish(DOM_DELETE_TODO_FROM_DISPLAY, {
+    UUID,
+  });
+}
+
+function handleDeleteTodo(topic, { UUID }) {
+  publish(DB_DELETE_TODO, {
+    UUID,
+    callback: () => {
+      removeTodoFromDisplay(UUID);
+    },
+  });
+}
+subscribe(REQUEST_DELETE_TODO, handleDeleteTodo);
 
 (function startApp() {
   publish(DB_INITIALIZE, {

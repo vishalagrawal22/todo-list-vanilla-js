@@ -12,6 +12,7 @@ import {
   DOM_DELETE_TODO_FROM_DISPLAY,
   REQUEST_TODO_STATUS_TOGGLE,
   REQUEST_ADD_TODO,
+  REQUEST_DELETE_TODO,
   REQUEST_UPDATE_TODO,
   REQUEST_ADD_PROJECT_DATA_TO_DISPLAY,
 } from "./topics";
@@ -288,6 +289,25 @@ import "./style.css";
     });
   }
 
+  function setupEditButton(todo) {
+    const editButton = todo.querySelector(".edit-button");
+  }
+
+  function setupDeleteButton(todo) {
+    const deleteButton = todo.querySelector(".edit-button");
+    const UUID = todo.getAttribute("data-UUID");
+    deleteButton.addEventListener("click", (Event) => {
+      publish(REQUEST_DELETE_TODO, {
+        UUID,
+      });
+    });
+  }
+
+  function setupActionButtons(todo) {
+    setupEditButton(todo);
+    setupDeleteButton(todo);
+  }
+
   function copyFromTemplate() {
     const todoTemplate = document.querySelector(".todo-item.template");
     const todo = todoTemplate.cloneNode(true);
@@ -298,6 +318,7 @@ import "./style.css";
   function getTodo(title, description, timeLeft, priority, isCompleted, UUID) {
     const todo = copyFromTemplate();
     todo.setAttribute("data-UUID", UUID);
+    setupActionButtons(todo);
     const titleData = todo.querySelector(
       `[data-type="title"] .todo-data-value`
     );
